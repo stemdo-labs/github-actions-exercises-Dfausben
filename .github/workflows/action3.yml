@@ -25,7 +25,7 @@ jobs:
           # Nombre del artefacto
           name: archivo
           # Ruta del archivo que se subirá
-          path: /archivo.txt
+          path: archivo.txt
           # Falla la acción y muestra un mensaje de error
           if-no-files-found: error
           # Sobreescribe el artefacto si ya existe
