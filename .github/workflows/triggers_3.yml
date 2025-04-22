@@ -6,7 +6,7 @@ on:
 
 jobs:
   crear-issue:
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
     steps:
       - name: Crear Issue
         run: echo "Se ha creado una nueva Issue"

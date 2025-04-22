@@ -12,8 +12,8 @@ on:
 # Definimos el trabajo de despliegue
 jobs:
   deploy:
-    # Seleccionamos el entorno de ejecución (ubuntu-latest)
-    runs-on: ubuntu-latest
+    # Seleccionamos el entorno de ejecución (labs-runner)
+    runs-on: labs-runner
     # Definimos los pasos del trabajo de despliegue
     steps:
       # Paso 1: Despliegue ficticio en producción

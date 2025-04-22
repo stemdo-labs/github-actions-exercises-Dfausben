@@ -10,8 +10,8 @@ on:
 # Definimos el trabajo que se realizará (tarea-ficticia)
 jobs:
   tarea-ficticia:
-    # Seleccionamos el entorno de ejecución (ubuntu-latest)
-    runs-on: ubuntu-latest
+    # Seleccionamos el entorno de ejecución (labs-runner)
+    runs-on: labs-runner
     # Definimos los pasos que se realizarán en la tarea
     steps:
       # Paso 1: Tarea ficticia
