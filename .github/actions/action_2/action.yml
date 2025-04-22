@@ -1,0 +1,61 @@
+# Nombre de la acción
+name: Crear archivo de bienvenida
+
+# Descripción de la acción
+description: Crear un archivo de bienvenida en el repositorio
+
+inputs:
+  # Nombre del repositorio
+  repository:
+    # Descripción del input
+    description: Nombre del repositorio
+    # Indicar si el input es requerido
+    required: true
+
+# Ejecución de la acción
+runs:
+  # Tipo de ejecución (en este caso, node12)
+  using: "node12"
+  # Comando que se va a ejecutar
+  # Crear un archivo con un mensaje de bienvenida
+  run: |
+    const fs = require('fs');
+    const repository = process.env.INPUT_REPOSITORY;
+    const filePath = 'bienvenida.txt';
+    const message = `Hola, bienvenido al repositorio de ${repository}`;
+
+    fs.writeFile(filePath, message, (err) => {
+      if (err) {
+        console.error(`Error al crear el archivo: ${err}`);
+      } else {
+        console.log(`Archivo creado con éxito: ${filePath}`);
+      }
+    });
+  # Directorio de trabajo
+  working-directory: .
+
+
+## Explicación del bloque run:
+
+## Importar el módulo de sistema de archivos (fs)
+# const fs = require('fs');
+
+## Obtener el nombre del repositorio desde la variable de entorno INPUT_REPOSITORY
+# const repository = process.env.INPUT_REPOSITORY;
+
+## Definir el nombre del archivo a crear
+# const filePath = 'bienvenida.txt';
+
+## Crear un mensaje de bienvenida personalizado con el nombre del repositorio
+# const message = `Hola, bienvenido al repositorio de ${repository}`;
+
+## Crear el archivo con el mensaje de bienvenida
+# fs.writeFile(filePath, message, (err) => {
+#   # Manejar el error en caso de que ocurra
+#   if (err) {
+#     console.error(`Error al crear el archivo: ${err}`);
+#   } else {
+#     # Mostrar un mensaje de éxito al crear el archivo
+#     console.log(`Archivo creado con éxito: ${filePath}`);
+#   }
+# });

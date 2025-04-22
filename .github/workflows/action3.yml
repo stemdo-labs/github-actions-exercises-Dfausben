@@ -1,0 +1,42 @@
+
+# Definimos el nombre del workflow
+name: Subir y descargar archivo
+
+# Seleccionamos el evento que dispara el workflow (push a la rama main)
+on:
+  push:
+    branches:
+      - main
+
+# Definimos el job que se ejecutará
+jobs:
+  subir-archivo:
+    # Seleccionamos el entorno en el que se ejecutará el job (ubuntu-latest)
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout del código para poder trabajar con él
+      - name: Checkout código
+        uses: actions/checkout@v3
+      # Subimos el archivo como un artefacto
+      - name: Subir archivo
+        uses: actions/upload-artifact@v4
+        with:
+          # Nombre del artefacto
+          name: archivo
+          # Ruta del archivo que se subirá
+          path: archivo.txt
+          # Falla la acción y muestra un mensaje de error
+          if-no-files-found: error
+          # Sobreescribe el artefacto si ya existe
+          overwrite: true
+      # Descargamos el archivo que se subió anteriormente
+      - name: Descargar archivo
+        uses: actions/download-artifact@v4
+        with:
+          # Nombre del artefacto que se descargará
+          name: archivo
+      # Mostramos el contenido del archivo descargado
+      - name: Mostrar contenido del archivo
+      # Comando para mostrar el contenido del archivo
+        run: |
+          cat archivo.txt

@@ -1,0 +1,61 @@
+name: Tarea ficticia y notificación
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tarea-ficticia:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Tarea ficticia
+        run: |
+          echo "Realizando tarea ficticia..."
+          sleep 5
+          echo "Tarea ficticia completada"
+      - name: Notificación
+        run: |
+          echo "Enviando notificación..."
+          curl -X POST \
+            http://example.com/notificacion \
+            -H 'Content-Type: application/json' \
+            -d '{"estado": "exitoso", "evento": "push"}'
+          echo "Notificación enviada"
+
+# Definimos el nombre de la tarea ficticia y la notificación
+name: Tarea ficticia y notificación
+
+# Seleccionamos el evento que dispara la tarea (push a la rama main)
+on:
+  push:
+    branches:
+      - main
+
+# Definimos el trabajo que se realizará (tarea-ficticia)
+jobs:
+  tarea-ficticia:
+    # Seleccionamos el entorno de ejecución (ubuntu-latest)
+    runs-on: ubuntu-latest
+    # Definimos los pasos que se realizarán en la tarea
+    steps:
+      # Paso 1: Tarea ficticia
+      - name: Tarea ficticia
+        # Ejecutamos un comando que simula una tarea ficticia
+        run: |          
+          echo "Realizando tarea ficticia..."
+          sleep 5          
+          echo "Tarea ficticia completada"
+      # Paso 2: Notificación
+      - name: Notificación
+        # Ejecutamos un comando que simula la notificación
+        # Utilizamos curl para enviar una solicitud POST a la URL de notificación
+        # Definimos el tipo de contenido de la solicitud (application/json)
+        # Definimos el cuerpo de la solicitud (estado y evento)
+        run: |
+          echo "Enviando notificación..."
+          curl -X POST \
+            http://URL.com/notificacion \
+            -H 'Content-Type: application/json' \
+            -d '{"estado": "exitoso", "evento": "push"}'
+          echo "Notificación enviada"
