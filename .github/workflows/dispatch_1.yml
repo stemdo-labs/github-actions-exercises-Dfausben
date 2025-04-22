@@ -1,0 +1,15 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Mensaje personalizado'
+        required: true
+
+jobs:
+  print-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Imprimir mensaje
+        run: echo "El mensaje es: ${{ github.event.inputs.message }}"
