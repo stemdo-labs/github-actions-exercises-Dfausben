@@ -1,0 +1,12 @@
+name: Crear Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  crear-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Crear Issue
+        run: echo "Se ha creado una nueva Issue"
