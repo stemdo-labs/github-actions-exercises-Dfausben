@@ -11,8 +11,8 @@ on:
 # Definimos el trabajo que se va a ejecutar
 jobs:
   informacion-del-runner:
-    # Seleccionamos el entorno de ejecución (ubuntu-latest)
-    runs-on: ubuntu-latest
+    # Seleccionamos el entorno de ejecución (labs-runner)
+    runs-on: labs-runner
     # Definimos los pasos que se van a ejecutar
     steps:
       # Paso 1: Imprimir información del runner

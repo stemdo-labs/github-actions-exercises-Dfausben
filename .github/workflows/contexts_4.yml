@@ -13,7 +13,7 @@ jobs:
   # Nombre del job
   verificar:
     # Definir la imagen de Docker que se utilizará
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
     # Definir los pasos que se ejecutarán
     steps:
       # Nombre del paso

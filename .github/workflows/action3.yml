@@ -12,8 +12,8 @@ on:
 # Definimos el job que se ejecutará
 jobs:
   subir-archivo:
-    # Seleccionamos el entorno en el que se ejecutará el job (ubuntu-latest)
-    runs-on: ubuntu-latest
+    # Seleccionamos el entorno en el que se ejecutará el job (labs-runner)
+    runs-on: labs-runner
     steps:
       # Checkout del código para poder trabajar con él
       - name: Checkout código

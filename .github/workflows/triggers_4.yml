@@ -1,0 +1,10 @@
+name: Daily Job
+on:
+  schedule:
+    - cron: 0 12 * * *
+jobs:
+  print-message:
+    runs-on: labs-runner
+    steps:
+      - name: Print message
+        run: echo "Scheduled job executed!"
