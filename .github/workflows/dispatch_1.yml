@@ -1,0 +1,35 @@
+# Definimos el nombre del workflow
+name: Workflow manual
+
+# Se especifica el evento que dispara el workflow
+on:
+  # En este caso, el workflow se dispara manualmente mediante el evento 'workflow_dispatch'
+  workflow_dispatch:
+    # Se definen las entradas del workflow
+    inputs:
+      # Se define una entrada llamada 'message' que es requerida
+      message:
+        # Se describe la entrada 'message'
+        description: 'Mensaje personalizado'
+        # Se indica que la entrada 'message' es requerida
+        required: true
+
+# Se define el trabajo 'print-message'
+jobs:
+  print-message:
+    # Se especifica el entorno donde se ejecuta el trabajo
+    runs-on: labs-runner
+    # Se definen los pasos del trabajo
+    steps:
+      # Se define el paso 'Checkout'
+      - name: Checkout
+        # Se utiliza la acción 'actions/checkout@v2' para realizar el checkout del código
+        uses: actions/checkout@v2
+      # Se define el paso 'Ejecutar un Comando'
+      - name: Ejecutar un Comando
+        # Se ejecuta el comando 'echo' para imprimir un mensaje
+        run: echo "Este workflow se ejecuta"
+      # Se define el paso 'Imprimir mensaje'
+      - name: Imprimir mensaje
+        # Se ejecuta el comando 'echo' para imprimir el mensaje personalizado
+        run: echo "El mensaje es ${{ github.inputs.message }}"

@@ -1,23 +1,40 @@
+# Definimos el nombre del flujo de trabajo
 name: Deploy
 
+# Definimos el evento que dispara el flujo de trabajo
 on:
+  # El flujo de trabajo se dispara manualmente mediante el evento "workflow_dispatch"
   workflow_dispatch:
+    # Definimos las entradas del flujo de trabajo
     inputs:
+      # Definimos la entrada "environment" que especifica el entorno de despliegue
       environment:
+        # Descripción de la entrada
         description: 'Environment to deploy'
+        # La entrada es obligatoria
         required: true
+        # Valor predeterminado de la entrada
         default: 'staging'
+        # Tipo de entrada (en este caso, una lista de opciones)
         type: choice
+        # Opciones disponibles para la entrada
         options:
           - production
           - staging
 
+# Definimos el trabajo "deploy"
 jobs:
   deploy:
+    # El trabajo se ejecuta en un entorno de ejecución llamado "labs-runner"
     runs-on: labs-runner
+    # Definimos los pasos del trabajo
     steps:
+      # Paso 1: Verificamos el código del repositorio
       - name: Checkout code
+        # Utilizamos la acción "actions/checkout@v3" para verificar el código
         uses: actions/checkout@v3
 
+      # Paso 2: Imprimimos el entorno de despliegue
       - name: Print environment
+        # Utilizamos la acción "run" para ejecutar un comando en el entorno de ejecución
         run: echo "Deploying to ${{ github.event.inputs.environment }}"
