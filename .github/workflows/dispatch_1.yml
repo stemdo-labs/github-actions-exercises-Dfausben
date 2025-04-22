@@ -11,5 +11,9 @@ jobs:
   print-message:
     runs-on: labs-runner
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Ejecutar un Comando
+        run: echo "Este workflow se ejecuta"
       - name: Imprimir mensaje
         run: echo "El mensaje es ${{ github.inputs.message }}"
