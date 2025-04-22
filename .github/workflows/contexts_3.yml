@@ -1,29 +1,3 @@
-name: Tarea ficticia y notificación
-
-on:
-  push:
-    branches:
-      - main
-      - actions_ws1
-
-jobs:
-  tarea-ficticia:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Tarea ficticia
-        run: |
-          echo "Realizando tarea ficticia..."
-          sleep 5
-          echo "Tarea ficticia completada"
-      - name: Notificación
-        run: |
-          echo "Enviando notificación..."
-          curl -X POST \
-            http://example.com/notificacion \
-            -H 'Content-Type: application/json' \
-            -d '{"estado": "exitoso", "evento": "push"}'
-          echo "Notificación enviada"
-
 # Definimos el nombre de la tarea ficticia y la notificación
 name: Tarea ficticia y notificación
 
