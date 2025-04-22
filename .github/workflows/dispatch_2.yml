@@ -17,7 +17,7 @@ jobs:
     runs-on: labs-runner
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Print environment
         run: echo "Deploying to ${{ github.event.inputs.environment }}"
