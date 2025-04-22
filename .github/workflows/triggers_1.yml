@@ -1,0 +1,21 @@
+name: Abrir Pull Request
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar pruebas
+        run: npm test
+
+      - name: Desplegar a producción
+        run: npm run deploy
