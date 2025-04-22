@@ -1,0 +1,13 @@
+name: Hello Push en la rama secundaria
+
+on:
+  push:
+    branches:
+      - actions_ws1
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hello World
+        run: echo "Hello, World!"

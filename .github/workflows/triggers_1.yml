@@ -5,17 +5,8 @@ on:
     types: [opened]
 
 jobs:
-  build-and-deploy:
+  job_on_pr:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout código
-        uses: actions/checkout@v2
-
-      - name: Instalar dependencias
-        run: npm install
-
-      - name: Ejecutar pruebas
-        run: npm test
-
-      - name: Desplegar a producción
-        run: npm run deploy
+        uses: actions/checkout@v3
