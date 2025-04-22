@@ -9,7 +9,7 @@ on:
 
 jobs:
   print-message:
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
     steps:
       - name: Imprimir mensaje
         run: echo "El mensaje es ${{ github.event.inputs.message }}"
