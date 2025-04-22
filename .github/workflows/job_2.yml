@@ -1,0 +1,27 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: labs-runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run build
+        run: |
+          echo "Building..."
+          # Agrega aquí los comandos de construcción
+
+  deploy:
+    needs: build
+    runs-on: labs-runner
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run deploy
+        run: |
+          echo "Deploying..."
