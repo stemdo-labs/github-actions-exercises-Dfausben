@@ -12,4 +12,4 @@ jobs:
     runs-on: labs-runner
     steps:
       - name: Imprimir mensaje
-        run: echo "El mensaje es ${{ github.event.inputs.message }}"
+        run: echo "El mensaje es ${{ github.inputs.message }}"
