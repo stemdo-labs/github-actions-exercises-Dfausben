@@ -1,0 +1,49 @@
+# Definimos el nombre del despliegue ficticio
+name: Despliegue ficticio
+
+# Seleccionamos el evento que dispara el despliegue (push a una rama)
+on:
+  push:
+    # Seleccionamos las ramas que disparan el despliegue (main y cualquier otra rama)
+    branches:
+      - main
+      - '*'
+
+# Definimos el trabajo de despliegue
+jobs:
+  deploy:
+    # Seleccionamos el entorno de ejecución (ubuntu-latest)
+    runs-on: ubuntu-latest
+    # Definimos los pasos del trabajo de despliegue
+    steps:
+      # Paso 1: Despliegue ficticio en producción
+      - name: Despliegue ficticio
+        # Condición para ejecutar este paso (solo si la rama es main)
+        if: github.ref == 'refs/heads/main'
+        # Definimos la variable de entorno API_KEY con el valor secreto PROD_API_KEY
+        env:
+          API_KEY: ${{ secrets.PROD_API_KEY }}
+        # Comando de despliegue ficticio en producción
+        # Imprimimos un mensaje de despliegue en producción con la API Key 
+        # y un mensaje de despliegue exitoso en producción
+        run: |
+          echo "Desplegando en producción con API Key: $API_KEY"
+          echo "Despliegue en producción exitoso"
+
+      # Paso 2: Despliegue ficticio en staging
+      - name: Despliegue ficticio en staging
+        # Condición para ejecutar este paso (solo si la rama no es main)
+        if: github.ref != 'refs/heads/main'
+        # Definimos la variable de entorno API_KEY con el valor secreto STAGING_API_KEY
+        env:
+          API_KEY: ${{ secrets.STAGING_API_KEY }}
+        # Comando de despliegue ficticio en staging
+        # Imprimimos un mensaje de despliegue en staging con la API Key
+        # y un mensaje de despliegue exitoso en staging
+        run: |
+          echo "Desplegando en staging con API Key: $API_KEY"
+          echo "Despliegue en staging exitoso"
+
+
+# Debemos reemplazar las API_KEYS con los nombres reales de 
+# los secretos configurados para el repositorio en GitHub

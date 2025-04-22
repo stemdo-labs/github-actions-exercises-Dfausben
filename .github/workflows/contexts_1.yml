@@ -1,0 +1,38 @@
+# Definimos el nombre del workflow
+name: Información del runner
+
+# Seleccionamos el evento que dispara el workflow (push a la rama main)
+on:
+  push:
+    branches:
+      - main
+      - actions_ws1
+
+# Definimos el trabajo que se va a ejecutar
+jobs:
+  informacion-del-runner:
+    # Seleccionamos el entorno de ejecución (ubuntu-latest)
+    runs-on: ubuntu-latest
+    # Definimos los pasos que se van a ejecutar
+    steps:
+      # Paso 1: Imprimir información del runner
+      - name: Imprimir información del runner
+        # Comando que se va a ejecutar
+        # Imprimimos el sistema operativo, la arquitectura del sistema,
+        # el espacio en disco disponible en la raíz del sistema
+        run: |
+          echo "Sistema operativo: $(uname -s)"
+          echo "Arquitectura: $(uname -m)"
+          echo "Espacio en disco disponible: $(df -h / | awk 'NR==2 {print $4}')"
+  
+# Explicación de las expresiones utilizadas
+
+# `uname -s` devuelve el nombre del sistema operativo
+# `uname -m` devuelve la arquitectura del sistema
+# `df -h /` muestra el uso del disco en formato humano legible
+# `awk 'NR==2 {print $4}'` selecciona la cuarta columna de la segunda fila del resultado de `df -h /`, que corresponde al espacio en disco disponible
+
+# Expresiones utilizadas en el comando `run`:
+# `$( )` es una expansión de comando que ejecuta el comando dentro de los paréntesis y devuelve el resultado como una cadena
+# `echo` imprime el texto y las variables de entorno o el resultado de los comandos ejecutados
+# `|` es un carácter de continuación de línea que permite escribir comandos en varias líneas

@@ -1,0 +1,39 @@
+# Definir el nombre del workflow
+name: Verificar Pull Request
+
+# Definir el evento que dispara el workflow
+on:
+  # El workflow se dispara cuando se abre un pull request
+  pull_request:
+    branches: 
+      - main
+      - actions_ws1
+    # Tipos de eventos que disparan el workflow
+    types: [opened]
+
+# Definir el job que se ejecutará
+jobs:
+  # Nombre del job
+  verificar:
+    # Definir la imagen de Docker que se utilizará
+    runs-on: ubuntu-latest
+    # Definir los pasos que se ejecutarán
+    steps:
+      # Nombre del paso
+      - name: Verificar título de Pull Request
+
+        # Comando que se ejecutará en el paso
+          # 1- Verificar si el evento es un pull request
+          # 2- Verificar si la palabra clave 'urgent' se encuentra en el título del pull request
+          # 3- Si la palabra clave se encuentra, enviar un mensaje de alerta
+          
+        run: |
+          if [[ "${GITHUB_EVENT_NAME}" == "pull_request" ]]; then
+            if [[ "${GITHUB_EVENT_PATH}" =~ "urgent" ]]; then
+              echo "Título de Pull Request: ${GITHUB_EVENT_PATH}"
+              echo "Cuerpo de Pull Request: ${GITHUB_EVENT_BODY}"
+            else
+              echo "La palabra clave 'urgent' no se encuentra en el título de la Pull Request"
+              exit 1
+            fi
+          fi
