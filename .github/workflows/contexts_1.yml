@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - actions_ws1
 
 # Definimos el trabajo que se va a ejecutar
 jobs:

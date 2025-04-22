@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - actions_ws1
 
 jobs:
   tarea-ficticia:

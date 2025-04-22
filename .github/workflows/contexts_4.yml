@@ -5,6 +5,9 @@ name: Verificar Pull Request
 on:
   # El workflow se dispara cuando se abre un pull request
   pull_request:
+    branches: 
+      - main
+      - actions_ws1
     # Tipos de eventos que disparan el workflow
     types: [opened]
 
