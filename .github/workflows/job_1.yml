@@ -2,28 +2,24 @@ name: Multitarea manual
 
 on:
   workflow_dispatch:
-
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: labs-runner
     steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
       - name: Mostrar fecha y hora actual
         run: date
       - name: Crear archivo de texto
         run: echo "Hola, mundo!" > archivo.txt
       - name: Listar archivos en el directorio actual
         run: ls -l
-      - name: Checkout del repositorio
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          repository: 'stemdo-labs/github-actions-exercises-Dfausben'
-          path: 'github-actions-exercises-Dfausben'
       - name: Hacer commit y push
         run: |
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
           git add .
           git commit -m "Primer commit"
-          git branch -M main
-          git push -u origin main
+          git push 
