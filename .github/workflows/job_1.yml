@@ -3,7 +3,7 @@ name: Multitarea manual
 on:
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: labs-runner
@@ -19,3 +19,4 @@ jobs:
           git add .
           git commit -m "Primer commit"
           git push
+
