@@ -5,7 +5,7 @@ on:
 
 jobs:
   secreto:
-    runs-on: labs-runners
+    runs-on: labs-runner
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
