@@ -14,11 +14,13 @@ jobs:
       - name: Listar archivos en el directorio actual
         run: ls -l
       - name: Hacer commit y push
+        env:
+          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
         run: |
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
           git init
-          git remote add origin https://github.com/stemdo-labs/github-actions-exercises-Dfausben
+          git remote add origin https://$REPO_TOKEN@github.com/stemdo-labs/github-actions-exercises-Dfausben.git
           git pull origin main
           git commit -m "Primer commit"
           git branch -M main
