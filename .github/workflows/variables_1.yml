@@ -1,4 +1,4 @@
-name: Variables_1
+name: Definicion de variables
 
 on:
   workflow_dispatch:

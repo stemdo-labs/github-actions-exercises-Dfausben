@@ -1,0 +1,12 @@
+secrets:
+  MIO_SECRETO: ${{ secrets.ES_UN_SECRETO }}
+
+jobs:
+  ejemplo:
+    runs-on: labs-runner
+    steps:
+      - name: Ejecutar comando con secreto
+        env:
+          MIO_SECRETO: ${{ secrets.ES_UN_SECRETO }}
+        run: |
+          echo "El secreto es $MIO_SECRETO"
