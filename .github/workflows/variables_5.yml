@@ -2,24 +2,30 @@ name: Variables_5
 
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 
 jobs:
   job1:
     runs-on: labs-runner
     steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
       - name: Definir y mostrar variable local
         env:
           var1: 1
         run: echo "var1 es $var1"
       - name: Definir variable de entorno (Github_ENV)
-        run: echo "VAR_2=2" >> $GITHUB_ENV
+        run: echo "VAR_2= 2" >> $GITHUB_ENV
       - name: Imprimir variable 2 (Github_ENV)
-        run: echo "El valor de la variable es $MY_VARIABLE"
+        run: echo "El valor de la variable es $VAR_2"
   job2:
     runs-on: labs-runner
     outputs:
       var_step_output: ${{ steps.step1.outputs.var_step_output }}
     steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
       - name: Definir output
         id: step1 
         run: echo "var_step_output=Output1" >> $GITHUB_OUTPUT
@@ -30,6 +36,8 @@ jobs:
     outputs:
       var3: ${{ steps.step2.outputs.var_step_output }}
     steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
       - name: Imprimir variable 2
         run:  echo "$VAR_2"
       - name: Definir Output var3
@@ -39,11 +47,15 @@ jobs:
     runs-on: labs-runner
     needs: job3
     steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
       - name:
         run:  echo "El valor de la variable es ${{ needs.job1.outputs.var3 }}"
   default_env:
     runs-on: labs-runner
     steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
       - name: Imprimir variables predefinidas
         run: |
           echo "Nombre del repositorio: $GITHUB_REPOSITORY"
