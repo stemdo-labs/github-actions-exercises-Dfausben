@@ -5,23 +5,11 @@ on:
 
 jobs:
   script:
-    runs-on: ubuntu-latest
+    runs-on: labs-runner
     steps:
-      - name: Definir variables de entorno
-        run: |
-          echo "MI_VARIABLE_1=valor_1" >> $GITHUB_ENV
-          echo "MI_VARIABLE_2=valor_2" >> $GITHUB_ENV
-      - name: Crear script
-        run: |
-          echo "#!/bin/bash" > mi_script.sh
-          echo "if [ $# -ne 2 ]; then" >> mi_script.sh
-          echo "  echo 'Error: se deben pasar dos parámetros'" >> mi_script.sh
-          echo "  exit 1" >> mi_script.sh
-          echo "fi" >> mi_script.sh
-          echo "VAR1=$1" >> mi_script.sh
-          echo "VAR2=$2" >> mi_script.sh
-          echo "echo 'La primera variable es: $VAR1'" >> mi_script.sh
-          echo "echo 'La segunda variable es: $VAR2'" >> mi_script.sh
-          chmod +x mi_script.sh
-      - name: Ejecutar comando con variables
-        run: ./mi_script.sh $MI_VARIABLE_1 $MI_VARIABLE_2
+    - name: Definir variables de entorno
+      env:
+        MI_VARIABLE_1: valor_1
+        MI_VARIABLE_2: valor_2
+    - name: Ejecutar comando con variables
+      run: echo "mis varaibles son $MI_VARIABLE_1 y $MI_VARIABLE_2"
