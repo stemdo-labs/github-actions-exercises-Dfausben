@@ -1,15 +1,15 @@
-secrets:
-  MIO_SECRETO: ${{ secrets.ES_UN_SECRETO }}
+name: Es un secreto (Variable)
 
 on:
   workflow_dispatch:
 
 jobs:
-  ejemplo:
-    runs-on: labs-runner
+  secreto:
+    runs-on: labs-runners
     steps:
-      - name: Ejecutar comando con secreto
+      - name: Checkout código
+        uses: actions/checkout@v4
+      - name: Utilizar secreto
+        run: echo "El valor del secreto es: $MY_SECRET"
         env:
-          MIO_SECRETO: ${{ secrets.ES_UN_SECRETO }}
-        run: |
-          echo "El secreto es $MIO_SECRETO"
+          MY_SECRET: ${{ secrets.MY_SECRET }}
