@@ -11,6 +11,8 @@ jobs:
       env:
         MI_VARIABLE_1: valor_1
         MI_VARIABLE_2: valor_2
-      run: echo "mis varaibles son $MI_VARIABLE_1 y $MI_VARIABLE_2"
+      run: echo "Variables definidas con exito"
+    - name: Comprobar las variables
+      run: echo "Mis variables son $MI_VARIABLE_1 y $MI_VARIABLE_2"
       
 
