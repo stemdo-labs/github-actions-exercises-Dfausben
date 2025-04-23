@@ -2,23 +2,24 @@ name: Multitarea manual
 
 on:
   workflow_dispatch:
-
+permissions:
+  contents: write
 jobs:
-  build:
+  multitarea:
     runs-on: labs-runner
     steps:
-      - name: Mostrar fecha y hora actual
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+      - name: Consultar fecha
         run: date
       - name: Crear archivo de texto
-        run: echo "Hola, mundo!" > archivo.txt
-      - name: Listar archivos en el directorio actual
+        run: echo "Soy un archivo de texto" > archivo.txt
+      - name: Listar archivos del wd
         run: ls -l
-      - name: Hacer commit y push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit & push
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Actualización automática"
+          git config --global user.name "David_Faustino"
+          git config --global user.email "dfaustino@stemdo.io"
+          git add archivo.txt
+          git commit -m "Primer commit"
           git push

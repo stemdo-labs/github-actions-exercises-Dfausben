@@ -1,0 +1,18 @@
+name: Validación de rama
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  validate-branch:
+    runs-on: labs-runner
+    steps:
+      - name: Validar rama
+        if: startsWith(github.event.branch, 'actions_ws1/')
+        run: |
+          echo "La rama es válida"
+          echo "Ejecutando tarea principal..."
+      - name: Tarea principal
+        run: echo "Tarea principal en ejecución"

@@ -1,0 +1,20 @@
+name: Variables_1
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mi_job:
+    runs-on: labs-runner
+    steps:
+      - name: Definir variables de entorno
+        run: |
+          echo "MI_VARIABLE_1=valor_1" >> $GITHUB_ENV
+          echo "MI_VARIABLE_2=valor_2" >> $GITHUB_ENV
+      - name: Ejecutar comando con variables
+        run: |
+          echo "Valor de MI_VARIABLE_1: $MI_VARIABLE_1"
+          echo "Valor de MI_VARIABLE_2: $MI_VARIABLE_2"
+          ./mi_script.sh $MI_VARIABLE_1 $MI_VARIABLE_2
