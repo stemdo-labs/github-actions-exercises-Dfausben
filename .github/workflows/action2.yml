@@ -4,10 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  runs-on: labs-runner
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+  action1:
+    runs-on: labs-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Acción1
-      uses: ./.github/actions/action_2
+      - name: Acción1
+        uses: ./.github/actions/action_2
