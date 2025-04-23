@@ -11,5 +11,6 @@ jobs:
       env:
         MI_VARIABLE_1: valor_1
         MI_VARIABLE_2: valor_2
-    - name: Ejecutar comando con variables
       run: echo "mis varaibles son $MI_VARIABLE_1 y $MI_VARIABLE_2"
+      
+
