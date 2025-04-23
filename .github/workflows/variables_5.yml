@@ -47,10 +47,10 @@ jobs:
     runs-on: labs-runner
     needs: job3
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
-      - name: Imprimir var3
-        run:  echo "El valor de la variable es ${{ needs.job3.outputs.var3 }}"
+      - name: Imprimir v3 
+        env:
+          VAR3: ${{needs.job3.outputs.var3}}
+        run:  echo "El valor de la variable es $VAR3"
   default_env:
     runs-on: labs-runner
     steps:
