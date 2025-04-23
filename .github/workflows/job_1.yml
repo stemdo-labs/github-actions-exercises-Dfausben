@@ -13,15 +13,17 @@ jobs:
         run: echo "Hola, mundo!" > archivo.txt
       - name: Listar archivos en el directorio actual
         run: ls -l
+      - name: Checkout del repositorio
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: 'stemdo-labs/github-actions-exercises-Dfausben'
+          path: 'github-actions-exercises-Dfausben'
       - name: Hacer commit y push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
-          git init
-          git remote add origin https://${{ secrets.GITHUB_TOKEN }}@github.com/stemdo-labs/github-actions-exercises-Dfausben.git
-          git pull origin main
+          git add .
           git commit -m "Primer commit"
           git branch -M main
           git push -u origin main
