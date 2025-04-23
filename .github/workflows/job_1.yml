@@ -14,12 +14,10 @@ jobs:
       - name: Listar archivos en el directorio actual
         run: ls -l
       - name: Hacer commit y push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
-          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
+          git pull origin main
           git add .
           git commit -m "Actualización automática"
           git push
