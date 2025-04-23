@@ -2,6 +2,8 @@ name: Variables_5
 
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 
 jobs:
   job1:
