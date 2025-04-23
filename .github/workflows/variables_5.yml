@@ -22,35 +22,33 @@ jobs:
   job2:
     runs-on: labs-runner
     outputs:
-      var_step_output: ${{ steps.step1.outputs.var_step_output }}
+      output: ${{ steps.step1.outputs.var_step_output }}
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
       - name: Definir output
         id: step1 
-        run: echo "var_step_output=Output1" >> $GITHUB_OUTPUT
+        run: echo "var_step_output= Output1" >> $GITHUB_OUTPUT
       - name: Imprimir output
-        run: echo "El valor de la variable es ${{ steps.Definir_output.outputs.var_step_output }}"
+        run: echo "El valor de la variable es ${{ steps.step1.outputs.var_step_output }}"
   job3:
     runs-on: labs-runner
     outputs:
-      var3: ${{ steps.step2.outputs.var_step_output }}
+      var3: ${{ steps.step3.outputs.var3 }}
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
       - name: Imprimir variable 2
-        run:  echo "$VAR_2"
+        run:  echo "La variable de entorno es $VAR_2"
       - name: Definir Output var3
-        id: step2
-        run: echo "var3=3" >> $GITHUB_OUTPUT
+        id: step3
+        run: echo "var3= 3" >> $GITHUB_OUTPUT
   job4:
     runs-on: labs-runner
     needs: job3
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
-      - name:
-        run:  echo "El valor de la variable es ${{ needs.job1.outputs.var3 }}"
+      - name: Imprimir v3 
+        env:
+          VAR3: ${{needs.job3.outputs.var3}}
+        run:  echo "El valor de la variable es $VAR3"
   default_env:
     runs-on: labs-runner
     steps:
