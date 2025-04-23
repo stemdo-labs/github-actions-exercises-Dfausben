@@ -17,6 +17,8 @@ jobs:
         run: |
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
+          git init
+          git remote add origin https://github.com/stemdo-labs/github-actions-exercises-Dfausben
           git pull origin main
           git add .
           git commit -m "Actualización automática"
