@@ -1,0 +1,53 @@
+name: Variables_5
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: labs-runner
+    steps:
+      - name: Definir y mostrar variable local
+        env:
+          var1: 1
+        run: echo "var1 es $var1"
+      - name: Definir variable de entorno (Github_ENV)
+        run: echo "VAR_2=2" >> $GITHUB_ENV
+      - name: Imprimir variable 2 (Github_ENV)
+        run: echo "El valor de la variable es $MY_VARIABLE"
+  job2:
+    runs-on: labs-runner
+    outputs:
+      var_step_output: ${{ steps.step1.outputs.var_step_output }}
+    steps:
+      - name: Definir output
+        id: step1 
+        run: echo "var_step_output=Output1" >> $GITHUB_OUTPUT
+      - name: Imprimir output
+        run: echo "El valor de la variable es ${{ steps.Definir_output.outputs.var_step_output }}"
+  job3:
+    runs-on: labs-runner
+    outputs:
+      var3: ${{ steps.step2.outputs.var_step_output }}
+    steps:
+      - name: Imprimir variable 2
+        run:  echo "$VAR_2"
+      - name: Definir Output var3
+        id: step2
+        run: echo "var3=3" >> $GITHUB_OUTPUT
+  job4:
+    runs-on: labs-runner
+    needs: job3
+    steps:
+      - name:
+        run:  echo "El valor de la variable es ${{ needs.job1.outputs.var3 }}"
+  default_env:
+    runs-on: labs-runner
+    steps:
+      - name: Imprimir variables predefinidas
+        run: |
+          echo "Nombre del repositorio: $GITHUB_REPOSITORY"
+          echo "Nombre de la rama: $GITHUB_REF"
+          echo "Nombre del evento: $GITHUB_EVENT_NAME"
+
+
