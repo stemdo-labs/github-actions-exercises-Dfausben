@@ -10,16 +10,12 @@ jobs:
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
-      - name: Mostrar fecha y hora actual
-        run: date
-      - name: Crear archivo de texto
-        run: echo "Hola, mundo!" > archivo.txt
-      - name: Listar archivos en el directorio actual
-        run: ls -l
-      - name: Hacer commit y push
         run: |
+          date
+          echo "Hola, mundo!" > archivo.txt
+          ls -l
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
           git add .
           git commit -m "Primer commit"
-          git push 
+          git push
