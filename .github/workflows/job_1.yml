@@ -10,13 +10,20 @@ jobs:
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
-      - run: |
-          date
-          echo "Hola, mundo!" > archivo.txt
-          ls -l
-          git config --global user.name "David_Faustino"
-          git config --global user.email "dfaustino@stemdo.io"
-          git add .
-          git commit -m "Primer commit"
-          git push
+      - name: Consultar fecha
+        run: date
+      - name: Crear archivo de texto
+        run: echo "Soy un archivo de texto" > archivo.txt
+      - name: Listar archivos del wd
+        run: ls -l
+      - name: Commit & push
+        run: |
+            date
+            echo "Hola, mundo!" > archivo.txt
+            ls -l
+            git config --global user.name "David_Faustino"
+            git config --global user.email "dfaustino@stemdo.io"
+            git add .
+            git commit -m "Primer commit"
+            git push
 
