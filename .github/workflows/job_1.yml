@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
           git add .
           git commit -m "Actualización automática"
           git push
