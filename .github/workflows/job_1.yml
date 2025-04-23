@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
-        run: |
+      - run: |
           date
           echo "Hola, mundo!" > archivo.txt
           ls -l
