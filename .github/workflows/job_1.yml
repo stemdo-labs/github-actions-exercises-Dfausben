@@ -20,7 +20,7 @@ jobs:
           git config --global user.name "David_Faustino"
           git config --global user.email "dfaustino@stemdo.io"
           git init
-          git remote add origin https://$REPO_TOKEN@github.com/stemdo-labs/github-actions-exercises-Dfausben.git
+          git remote add origin https://github.com/stemdo-labs/github-actions-exercises-Dfausben.git
           git pull origin main
           git commit -m "Primer commit"
           git branch -M main
