@@ -18,12 +18,9 @@ jobs:
         run: ls -l
       - name: Commit & push
         run: |
-            date
-            echo "Hola, mundo!" > archivo.txt
-            ls -l
-            git config --global user.name "David_Faustino"
-            git config --global user.email "dfaustino@stemdo.io"
-            git add .
-            git commit -m "Primer commit"
-            git push
+          git config --global user.name "David_Faustino"
+          git config --global user.email "dfaustino@stemdo.io"
+          git add archivo.txt
+          git commit -m "Primer commit"
+          git push
 
