@@ -20,6 +20,6 @@ jobs:
           git init
           git remote add origin https://github.com/stemdo-labs/github-actions-exercises-Dfausben
           git pull origin main
-          git add .
-          git commit -m "Actualización automática"
-          git push
+          git commit -m "Primer commit"
+          git branch -M main
+          git push -u origin main
