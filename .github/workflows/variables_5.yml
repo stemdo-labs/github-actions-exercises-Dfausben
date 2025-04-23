@@ -37,7 +37,7 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
       - name: Imprimir variable 2
-        run:  echo "$VAR_2"
+        run:  echo "La variable de entorno es $VAR_2"
       - name: Definir Output var3
         id: step3
         run: echo "var3= 3" >> $GITHUB_OUTPUT
