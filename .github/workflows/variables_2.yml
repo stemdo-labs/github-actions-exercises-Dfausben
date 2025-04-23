@@ -1,6 +1,9 @@
 secrets:
   MIO_SECRETO: ${{ secrets.ES_UN_SECRETO }}
 
+on:
+  workflow_dispatch:
+
 jobs:
   ejemplo:
     runs-on: labs-runner
