@@ -34,14 +34,14 @@ jobs:
   job3:
     runs-on: labs-runner
     outputs:
-      var3: ${{ steps.step2.outputs.var_step_output }}
+      var3: ${{ steps.step3.outputs.var_step_output }}
     steps:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
       - name: Imprimir variable 2
         run:  echo "$VAR_2"
       - name: Definir Output var3
-        id: step2
+        id: step3
         run: echo "var3= 3" >> $GITHUB_OUTPUT
   job4:
     runs-on: labs-runner
