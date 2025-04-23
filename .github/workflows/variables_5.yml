@@ -12,9 +12,9 @@ jobs:
           var1: 1
         run: echo "var1 es $var1"
       - name: Definir variable de entorno (Github_ENV)
-        run: echo "VAR_2=2" >> $GITHUB_ENV
+        run: echo "VAR_2= 2" >> $GITHUB_ENV
       - name: Imprimir variable 2 (Github_ENV)
-        run: echo "El valor de la variable es $MY_VARIABLE"
+        run: echo "El valor de la variable es $VAR_2"
   job2:
     runs-on: labs-runner
     outputs:
