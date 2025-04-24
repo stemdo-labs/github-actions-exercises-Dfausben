@@ -7,10 +7,15 @@ jobs:
   validate-branch:
     runs-on: labs-runner
     steps:
-      - name: Validar rama
+      - name: Rama Actions 
         if: startsWith(github.event.branch, 'actions_ws1/')
         run: |
           echo "La rama es válida"
           echo "Ejecutando tarea principal..."
-      - name: Tarea principal
-        run: echo "Tarea principal en ejecución"
+          sleep 5
+          echo "Tarea principal"
+      - name: Rama diferente a Actions
+        if: github.event.branch != 'actions_ws1/*'
+        run: |
+          echo "La rama no es válida"
+          echo "Abortando..."
