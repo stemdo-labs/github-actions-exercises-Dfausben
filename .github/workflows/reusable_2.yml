@@ -1,9 +1,7 @@
-name: Validación de rama
+name: Validación de rama (Reusable2)
 
 on:
-  push:
-    branches:
-      - '**'
+  workflow_call:
 
 jobs:
   validate-branch:
