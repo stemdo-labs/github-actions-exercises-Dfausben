@@ -32,7 +32,7 @@ jobs:
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
 
-            -d '{"estado": "exito", "evento": "$GITHUB_EVENT_NAME"}'
+            -d '{"estado": "exito", "evento": "'"$GITHUB_EVENT_NAME"'"}'
           echo "Notificación enviada"
 
       - name: Notificación
@@ -47,5 +47,8 @@ jobs:
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
 
-            -d '{"estado": "fallo", "evento": "$GITHUB_EVENT_NAME"}'
+            -d '{"estado": "exito", "evento": "'"$GITHUB_EVENT_NAME"'"}'
           echo "Notificación enviada"
+
+
+          
