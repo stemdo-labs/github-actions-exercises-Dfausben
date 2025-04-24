@@ -7,9 +7,9 @@ jobs:
   script:
     runs-on: labs-runner
     steps:
-    - name: Variables
+    - id: step1
       run: |
         echo "MI_VARIABLE_1= Output1" >> $GITHUB_OUTPUT
         echo "MI_VARIABLE_2= Output2" >> $GITHUB_OUTPUT
     - name: Comprobar las variables
-      run: echo "El valor de la variable es ${{ steps.Variables.outputs.MI_VARIABLE_1 }} y ${{ steps.Variables.outputs.MI_VARIABLE_2 }}"
+      run: echo "El valor de la variable es ${{ steps.step1.outputs.MI_VARIABLE_1 }} y ${{ steps.step1.outputs.MI_VARIABLE_2 }}"
