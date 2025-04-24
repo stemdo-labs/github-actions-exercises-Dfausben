@@ -9,7 +9,8 @@ on:
 
 jobs:
   deploy:
-    uses: deploy-enviromment.yml
+    uses: ./.github/workflows/deploy-enviromment.yml
     with:
-      environment: ${{ github.event.branch }}
-    if: github.event.branch == 'main' || github.event.branch == 'develop' || startsWith(github.event.branch, 'release/')
+      if: github.event.branch == 'main' || github.event.branch == 'develop' || startsWith(github.event.branch, 'release/')
+      env: ${{ github.event.branch }}
+    
