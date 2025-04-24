@@ -3,9 +3,7 @@ name: Tarea ficticia y notificación
 
 # Seleccionamos el evento que dispara la tarea (push a la rama main)
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 # Definimos el trabajo que se realizará (tarea-ficticia)
 jobs:
