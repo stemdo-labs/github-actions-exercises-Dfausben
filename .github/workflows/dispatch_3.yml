@@ -7,6 +7,10 @@ on:
         description: 'Confirmación'
         required: true
         default: 'false'
+        type: choice
+        options:
+          - true
+          - false
 
 jobs:
   print-message:
