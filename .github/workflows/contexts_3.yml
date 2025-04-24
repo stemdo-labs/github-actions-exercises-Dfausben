@@ -22,34 +22,23 @@ jobs:
           echo "Tarea ficticia completada"
       # Paso 2: Notificación
       - name: Notificación exito
-        # Ejecutamos un comando que simula la notificación
-        # Utilizamos curl para enviar una solicitud POST a la URL de notificación
-        # Definimos el tipo de contenido de la solicitud (application/json)
-        # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status == 'success'
         run: |
-          json=$( jo "estado=exito" "evento=$PASSWORD" )
           echo "Enviando notificación..."
           curl -X POST \
-            http://URL.com/notificacion \
-            -H 'Content-Type: application/json' \
-
-            -d "{\"estado\":\"exito\",\"evento\":\"$GITHUB_EVENT_NAME\"}"
+            -H "Content-Type: application/json" \
+            -d '{"estado":"exito","evento":"'"$GITHUB_EVENT_NAME"'"}' \
+            https://example.com/notificacion
           echo "Notificación enviada"
 
       - name: Notificación
-        # Ejecutamos un comando que simula la notificación
-        # Utilizamos curl para enviar una solicitud POST a la URL de notificación
-        # Definimos el tipo de contenido de la solicitud (application/json)
-        # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status != 'success'
         run: |
           echo "Enviando notificación..."
           curl -X POST \
-            http://URL.com/notificacion \
-            -H 'Content-Type: application/json' \
-
-            -d "{\"estado\":\"fallo\",\"evento\":\"$GITHUB_EVENT_NAME\"}"
+            -H "Content-Type: application/json" \
+            -d '{"estado":"fallo","evento":"'"$GITHUB_EVENT_NAME"'"}' \
+            https://example.com/notificacion
           echo "Notificación enviada"
 
 
