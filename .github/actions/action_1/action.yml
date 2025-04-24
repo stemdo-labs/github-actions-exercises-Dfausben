@@ -1,29 +1,16 @@
 # Nombre de la acción
 name: Crear archivo de bienvenida
 
-# Descripción de la acción
-description: Crear un archivo de bienvenida en el repositorio
-
-inputs:
-  # Nombre del repositorio
-  repository:
-    # Descripción del input
-    description: Nombre del repositorio
-    # Indicar si el input es requerido
-    required: true
-
 # Ejecución de la acción
 runs:
-  # Tipo de ejecución (en este caso, node12)
-  using: "node12"
-  # Comando que se va a ejecutar
-  # Verificar si el archivo "bienvenida.txt" no existe
-  # Crear el archivo con un mensaje de bienvenida
-  run: |
-    if [ ! -f "bienvenida.txt" ]; then
-      echo "Hola, bienvenido al repositorio de ${INPUT_REPOSITORY}" > bienvenida.txt
-    fi
-  # Directorio de trabajo
-  working-directory: .
-
-  
+  # Tipo de ejecución (en este caso, bash)
+  using: "composite"
+  steps:
+    - run: |
+        echo "Hola, bienvenido al repositorio de $INPUT_REPOSITORY" > bienvenida.txt
+        if [ $? -eq 0 ]; then
+          echo "Archivo creado con éxito: bienvenida.txt"
+        else
+          echo "Error al crear el archivo"
+        fi
+      shell: bash
