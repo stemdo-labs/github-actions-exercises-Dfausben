@@ -18,6 +18,7 @@ jobs:
           overwrite: true
 
   move_file:
+    needs: crear_archivo
     runs-on: labs-runner
     steps:
       - name: Descargar archivo
