@@ -1,0 +1,21 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Confirmación'
+        required: true
+        default: 'false'
+
+jobs:
+  print-message:
+    runs-on: labs-runner
+    steps:
+      - name: Print message
+        run: |
+          if [ "${{ github.event.inputs.confirm }}" = "true" ]; then
+            echo "Confirmación positiva"
+          else
+            echo "Confirmación negativa"
+          fi
