@@ -5,4 +5,4 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/reusable_1
+    uses: ./.github/workflows/reusable_1.yml
