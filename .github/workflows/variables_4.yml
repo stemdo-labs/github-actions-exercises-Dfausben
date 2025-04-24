@@ -1,0 +1,44 @@
+name: Validación y despliegue condicional
+
+on:
+  push:
+    branches:
+      - prod
+      - dev
+
+jobs:
+  validate-and-deploy:
+    runs-on: labs-runner
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Verificar archivo config.json
+        run: |
+          if [ ! -f config.json ]; then
+            echo "El archivo config.json no existe"
+            exit 1
+          fi
+          if ! jq -e . config.json > /dev/null; then
+            echo "El archivo config.json no tiene formato JSON válido"
+            exit 1
+          fi
+
+      - name: Extraer versión de la aplicación
+        id: app-version
+        run: |
+          VERSION=$(jq -r '.version' config.json)
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Despliegue condicional
+        if: github.event_name == 'push'
+        run: |
+          if [ "${GITHUB_REF}" == "refs/heads/prod" ]; then
+            echo "Desplegando en producción..."
+          elif [ "${GITHUB_REF}" == "refs/heads/dev" ]; then
+            echo "Desplegando en develop..."
+          fi
+
+      - name: Mostrar versión de la aplicación
+        run: |
+          echo "Versión de la aplicación: $VERSION"
