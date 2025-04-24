@@ -7,12 +7,9 @@ jobs:
   script:
     runs-on: labs-runner
     steps:
-    - name: Definir variables de entorno
-      env:
-        MI_VARIABLE_1: valor_1
-        MI_VARIABLE_2: valor_2
-      run: echo "Variables definidas con exito"
+    - name: Variables
+      run: |
+        echo "MI_VARIABLE_1= Output1" >> $GITHUB_OUTPUT
+        echo "MI_VARIABLE_2= Output2" >> $GITHUB_OUTPUT
     - name: Comprobar las variables
-      run: echo "Mis variables son $MI_VARIABLE_1 y $MI_VARIABLE_2"
-      
-
+      run: echo "El valor de la variable es ${{ steps.Variables.outputs.MI_VARIABLE_1 }} y ${{ steps.Variables.outputs.MI_VARIABLE_2 }}"
