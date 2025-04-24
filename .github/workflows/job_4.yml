@@ -9,11 +9,21 @@ jobs:
     steps:
       - name: Crear_archivo
         run: echo "Soy jobs 4" > archivoj4.txt
+      - name: Subir archivo como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivoj4
+          path: archivoj4.txt
+          if-no-files-found: error
+          overwrite: true
 
   move_file:
     runs-on: labs-runner
-    needs: Crear_archivo
     steps:
+      - name: Descargar archivo
+        uses: actions/download-artifact@v4
+        with:
+          name: archivoj4
       - name: Mover_archivo
         run: |
           mkdir -p ./job4_archivo
