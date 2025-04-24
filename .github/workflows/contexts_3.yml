@@ -27,12 +27,13 @@ jobs:
         # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status == 'success'
         run: |
+          json=$( jo "estado=exito" "evento=$GITHUB_EVENT_NAME" )
           echo "Enviando notificación..."
           curl -X POST \
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
 
-            -d '{"estado": "exito", "evento": "'"$GITHUB_EVENT_NAME"'"}'
+            -d "$json"
           echo "Notificación enviada"
 
       - name: Notificación
@@ -42,12 +43,13 @@ jobs:
         # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status != 'success'
         run: |
+          json=$( jo "estado=fallo" "evento=$GITHUB_EVENT_NAME" )
           echo "Enviando notificación..."
           curl -X POST \
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
 
-            -d '{"estado": "exito", "evento": "'"$GITHUB_EVENT_NAME"'"}'
+            -d "$json"
           echo "Notificación enviada"
 
 
