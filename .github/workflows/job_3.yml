@@ -1,0 +1,16 @@
+name: Multi-OS Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Job_Multi_OS:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, labs-runner]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Mensaje
+        run: echo "Hola desde dos runners (OS)"
