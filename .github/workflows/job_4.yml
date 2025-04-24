@@ -1,0 +1,20 @@
+name: Crear y Mover
+
+on:
+  workflow_dispatch:
+
+jobs:
+  crear_archivo:
+    runs-on: labs-runner
+    steps:
+      - name: Crear_archivo
+        run: echo "Soy jobs 4" > archivoj4.txt
+
+  move_file:
+    runs-on: labs-runner
+    needs: Crear_archivo
+    steps:
+      - name: Mover_archivo
+        run: |
+          mkdir -p ./job4_archivo
+          mv ./archivoj4.txt ./job4_archivo/
