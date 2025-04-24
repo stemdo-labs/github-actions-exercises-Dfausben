@@ -22,15 +22,32 @@ jobs:
           sleep 5          
           echo "Tarea ficticia completada"
       # Paso 2: Notificación
-      - name: Notificación
+      - name: Notificación exito
         # Ejecutamos un comando que simula la notificación
         # Utilizamos curl para enviar una solicitud POST a la URL de notificación
         # Definimos el tipo de contenido de la solicitud (application/json)
         # Definimos el cuerpo de la solicitud (estado y evento)
+        if: job.status == 'success'
         run: |
           echo "Enviando notificación..."
           curl -X POST \
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
-            -d '{"estado": "exitoso", "evento": "push"}'
+
+            -d '{"estado": "exito", "evento": "$GITHUB_EVENT_NAME"}'
+          echo "Notificación enviada"
+
+      - name: Notificación
+        # Ejecutamos un comando que simula la notificación
+        # Utilizamos curl para enviar una solicitud POST a la URL de notificación
+        # Definimos el tipo de contenido de la solicitud (application/json)
+        # Definimos el cuerpo de la solicitud (estado y evento)
+        if: job.status != 'success'
+        run: |
+          echo "Enviando notificación..."
+          curl -X POST \
+            http://URL.com/notificacion \
+            -H 'Content-Type: application/json' \
+
+            -d '{"estado": "fallo", "evento": "$GITHUB_EVENT_NAME"}'
           echo "Notificación enviada"
