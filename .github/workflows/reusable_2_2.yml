@@ -1,4 +1,4 @@
-name: Call Reusable1
+name: Call Reusable2
 
 on:
   workflow_dispatch:
