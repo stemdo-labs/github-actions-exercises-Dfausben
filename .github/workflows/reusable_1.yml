@@ -1,39 +1,10 @@
-# Workflow reutilizable
-# Este workflow se puede reutilizar en otros archivos de workflow
-reusable-workflow:
-  # Nombre del workflow
-  name: Workflow reutilizable
-  # Evento que dispara el workflow
-  on:
-    # El workflow se dispara manualmente
-    workflow_dispatch:
-  # Trabajos que se ejecutan en el workflow
-  jobs:
-    # Trabajo que imprime un mensaje
-    print-message:
-      # Entorno en el que se ejecuta el trabajo
-      runs-on: labs-runner
-      # Pasos que se ejecutan en el trabajo
-      steps:
-        # Paso que imprime un mensaje
-        - name: Imprimir mensaje
-          # Comando que se ejecuta en el paso
-          run: echo "Este es un mensaje desde el workflow reutilizable"
+name: Reusable1
 
-# Workflow que utiliza el workflow reutilizable
-# Este workflow utiliza el workflow reutilizable
-main-workflow:
-  # Nombre del workflow
-  name: Workflow principal
-  # Evento que dispara el workflow
-  on:
-    # El workflow se dispara al hacer push en la rama main
-    push:
-      branches:
-        - main
-  # Trabajos que se ejecutan en el workflow
-  jobs:
-    # Trabajo que llama al workflow reutilizable
-    call-reusable-workflow:
-      # Utiliza el archivo de workflow reutilizable
-      uses: ./.github/workflows/reusable-workflow.yml
+on:
+  workflow_call:
+
+jobs:
+  Mostrar_mensaje:
+    runs-on: labs-runner
+    steps:
+      - run: echo "Hola"
