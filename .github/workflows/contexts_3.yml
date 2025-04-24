@@ -28,7 +28,6 @@ jobs:
         # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status == 'success'
         run: |
-          json=$( jo "estado=exito" "evento=$PASSWORD" )
           echo "Enviando notificación..."
           curl -X POST \
             http://URL.com/notificacion \
