@@ -7,6 +7,7 @@ on:
 
 # Definimos el trabajo que se realizará (tarea-ficticia)
 jobs:
+
   tarea-ficticia:
     # Seleccionamos el entorno de ejecución (labs-runner)
     runs-on: labs-runner
@@ -27,13 +28,13 @@ jobs:
         # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status == 'success'
         run: |
-          json=$( jo "estado=exito" "evento=$GITHUB_EVENT_NAME" )
+          json=$( jo "estado=exito" "evento=$PASSWORD" )
           echo "Enviando notificación..."
           curl -X POST \
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
 
-            -d "$json"
+            -d "{\"estado\":\"exito\",\"evento\":\"$GITHUB_EVENT_NAME\"}"
           echo "Notificación enviada"
 
       - name: Notificación
@@ -43,13 +44,12 @@ jobs:
         # Definimos el cuerpo de la solicitud (estado y evento)
         if: job.status != 'success'
         run: |
-          json=$( jo "estado=fallo" "evento=$GITHUB_EVENT_NAME" )
           echo "Enviando notificación..."
           curl -X POST \
             http://URL.com/notificacion \
             -H 'Content-Type: application/json' \
 
-            -d "$json"
+            -d "{\"estado\":\"fallo\",\"evento\":\"$GITHUB_EVENT_NAME\"}"
           echo "Notificación enviada"
 
 
