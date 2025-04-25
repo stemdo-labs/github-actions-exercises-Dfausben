@@ -5,11 +5,11 @@ on:
     branches:
       - main
       - dev
-      - 'release/*'
+
 
 jobs:
   deploy:
-    runs-on: labs-runner
+    runs-on: [self-hosted, labs-runner] 
     steps:
       - name: Comprobar rama
         uses: ./.github/workflows/deploy-enviromment.yml
