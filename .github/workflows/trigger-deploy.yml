@@ -5,10 +5,9 @@ on:
     branches:
       - main
       - dev
-
 jobs:
-       - name: Comprobar rama
-         uses: ./.github/workflows/deploy-enviromment
-         with:
-           env: ${{ github.ref.name }}
+  llamada:
+    uses: ./.github/workflows/deploy-enviromment
+    with:
+      env: ${{ github.ref.name }}
 
