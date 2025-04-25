@@ -5,17 +5,10 @@ on:
     branches:
       - main
       - dev
+
 jobs:
-  checkout:
-    runs-on: self-hosted
-    outputs: 
-      env: ${{ steps.step2.outputs.env }}
-    steps:
-    - uses: actions/checkout@v4
-    - id: step2
-      run: echo "env= ${{ github.ref.name }}" >> $GITHUB_OUTPUT
   llamada:
-    needs: checkout
     uses: ./.github/workflows/deploy-enviromment.yml
     with:
-      env: ${{ jobs.checkout.outputs.env }}
+      env: $GITHUB_REF_NAME
+
