@@ -4,15 +4,12 @@ on:
     inputs:
       env:
         type: string
-        required: true
 
 jobs:
   deploy:
-    runs-on: labs-runner
+    runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
+      - name: Check
+        uses: actions/checkout@v2
       - name: Deploy to ${{ inputs.env }}
-        run: |
-          echo "Deploying to ${{ inputs.env }}"
+        run: echo "Deploying to ${{ inputs.env }}"

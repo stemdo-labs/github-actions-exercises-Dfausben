@@ -14,7 +14,7 @@ on:
 
 jobs:
   print-message:
-    runs-on: labs-runner
+    runs-on: self-hosted
     steps:
       - name: Print message
         run: |

@@ -5,15 +5,16 @@ on:
     branches:
       - main
       - dev
-      - 'release/*'
+
 
 jobs:
   deploy:
-  runs-on: labs-runner
-  steps:
-    uses: ./.github/workflows/deploy-enviromment.yml
-    with:
-    # if: github.ref.name == 'main' || github.ref.name == 'develop' || startsWith(github.ref.name, 'release/')
-      env: ${{ github.ref.name }}
-    
-    
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Comprobar rama
+        uses: ./.github/workflows/deploy-enviromment
+        with:
+          env: ${{ github.ref.name }}
+
