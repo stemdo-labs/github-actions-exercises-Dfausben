@@ -9,8 +9,11 @@ on:
 
 jobs:
   deploy:
+  runs-on: labs-runner
+  steps:
     uses: ./.github/workflows/deploy-enviromment.yml
     with:
-      if: github.event.branch == 'main' || github.event.branch == 'develop' || startsWith(github.event.branch, 'release/')
-      env: ${{ github.event.branch }}
+    # if: github.ref.name == 'main' || github.ref.name == 'develop' || startsWith(github.ref.name, 'release/')
+      env: ${{ github.ref.name }}
+    
     
