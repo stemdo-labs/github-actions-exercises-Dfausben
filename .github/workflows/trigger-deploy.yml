@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: dfausben_runner
+    runs-on: self-hosted
     steps:
       - name: Comprobar rama
         uses: ./.github/workflows/deploy-enviromment.yml
