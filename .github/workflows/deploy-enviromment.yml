@@ -4,7 +4,6 @@ on:
     inputs:
       env:
         type: string
-        required: true
 
 jobs:
   deploy:
