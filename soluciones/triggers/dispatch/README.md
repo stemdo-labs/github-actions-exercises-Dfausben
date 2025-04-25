@@ -43,14 +43,14 @@ jobs:
       # Se define el paso 'Imprimir mensaje'
       - name: Imprimir mensaje
         # Se ejecuta el comando 'echo' para imprimir el mensaje personalizado
-        run: echo "El mensaje es ${{ github.inputs.message }}"
+        run: echo "El mensaje es ${{ github.event.inputs.message }}"
 ````
 
 ### Ejecución
 
 Observamos el proceso de ejecución de nuestro workflow.
 
-<img src="../../../datos/img/" width="1280">
+<img src="../../../datos/img/dispatch1.png" width="1280">
 
 ## Dispatch 2 - Elección de opciones
 
