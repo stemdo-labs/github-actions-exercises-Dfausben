@@ -11,4 +11,3 @@ jobs:
     uses: ./.github/workflows/deploy-enviromment.yml
     with:
       env: $GITHUB_REF_NAME
-

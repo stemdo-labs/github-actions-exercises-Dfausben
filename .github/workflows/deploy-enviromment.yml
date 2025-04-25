@@ -10,5 +10,5 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Deploy to ${{ inputs.env }}
+      - name: Deploy to environment
         run: echo "Deploying to ${{ inputs.env }}"

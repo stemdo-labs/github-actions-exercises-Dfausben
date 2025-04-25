@@ -140,34 +140,24 @@ Desde la misma pestaña que se menciona al principio podremos ver nuestros entor
 Definimos el workflow, se trabaja con un input pasado como parametro desde el workflow que llama al reusable:
 
 ````yml
-# Definimos el nombre del flujo de trabajo
-name: Deploy to environment
+# Definimos el nombre del workflow
+name: Deploy to Environments
 
-# Se ejecuta cuando se llama a este flujo de trabajo desde otro
+# Se ejecuta el workflow cuando se realiza un push en las ramas main o dev
 on:
-  workflow_call:
-    # Definimos la entrada 'env' como un string requerido
-    inputs:
-      env:
-        type: string
-        required: true
+  push:
+    branches:
+      - main  # Rama principal
+      - dev   # Rama de desarrollo
 
-# Definimos el trabajo 'deploy'
+# Definimos un job llamado llamada
 jobs:
-  deploy:
-    # Se ejecuta en el entorno 'labs-runner'
-    runs-on: labs-runner
-    # Definimos los pasos del trabajo
-    steps:
-      # Paso 1: Descargamos el código del repositorio
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # Paso 2: Realizamos la acción de despliegue en el entorno especificado
-      - name: Deploy to ${{ inputs.env }}
-        # Ejecutamos un comando en la consola para desplegar en el entorno
-        run: |
-          echo "Deploying to ${{ inputs.env }}"
+  llamada:
+    # Utilizamos el archivo de workflow deploy-enviromment.yml ubicado en .github/workflows
+    uses: ./.github/workflows/deploy-enviromment.yml
+    # Pasamos la variable env con el nombre de la rama actual
+    with:
+      env: $GITHUB_REF_NAME
 ````
 
 ### Workflow de llamada
@@ -175,27 +165,35 @@ jobs:
 Definimos el workflow:
 
 ````yml
-name: Deploy to Environments
+# Definimos el nombre del workflow
+name: Deploy to environment
 
+# Se ejecuta el workflow cuando se llama desde otro workflow
 on:
-  push:
-    branches:
-      - main
-      - dev
-      - 'release/*'
+  workflow_call:
+    # Definimos la entrada del workflow, que es el entorno al que se va a desplegar
+    inputs:
+      env:
+        # Tipo de dato de la entrada, en este caso es un string
+        type: string
+        # La entrada es requerida
+        required: true
 
+# Definimos el job que se va a ejecutar
 jobs:
   deploy:
-  runs-on: labs-runner
-  steps:
-    uses: ./.github/workflows/deploy-enviromment.yml
-    with:
-    # if: github.ref.name == 'main' || github.ref.name == 'develop' || startsWith(github.ref.name, 'release/')
-      env: ${{ github.ref.name }}
+    # El job se ejecuta en un runner auto-hospedado
+    runs-on: self-hosted
+    # Definimos los pasos que se van a ejecutar en el job
+    steps:
+      # Definimos el nombre del paso
+      - name: Deploy to environment
+        # El comando que se va a ejecutar en el paso
+        run: echo "Deploying to ${{ inputs.env }}"
 ````
 
 ### Ejecución
 
 Observamos el proceso de ejecución de nuestro workflow
 
-<img src="../../datos/img/" width="1280">
+<img src="../../datos/img/reusable3_4.png" width="1280">
