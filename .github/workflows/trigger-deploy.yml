@@ -8,12 +8,12 @@ on:
 jobs:
   checkout:
     runs-on: self-hosted
+    outputs: 
+      environment: ${{ steps.step2.outputs.env }}
     steps:
     - uses: actions/checkout@v4
     - id: step2
       run: echo "env= ${{ github.ref.name }}" >> $GITHUB_OUTPUT
-      outputs: 
-        environment: ${{ steps.step2.outputs.env }}
   llamada:
     needs: checkout
     uses: ./.github/workflows/deploy-enviromment.yml
