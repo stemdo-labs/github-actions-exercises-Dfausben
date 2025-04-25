@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: labs-runner
+    runs-on: [self-hosted, labs-runner] 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
