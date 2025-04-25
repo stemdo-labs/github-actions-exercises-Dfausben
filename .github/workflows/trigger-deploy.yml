@@ -7,7 +7,7 @@ on:
       - dev
 jobs:
   llamada:
-    uses: ./.github/workflows/deploy-enviromment
+    uses: ./.github/workflows/deploy-enviromment.yml
     with:
       env: ${{ github.ref.name }}
 
