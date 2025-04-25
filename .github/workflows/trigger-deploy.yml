@@ -9,7 +9,7 @@ jobs:
   checkout:
     runs-on: self-hosted
     outputs: 
-      environment: ${{ steps.step2.outputs.env }}
+      env: ${{ steps.step2.outputs.env }}
     steps:
     - uses: actions/checkout@v4
     - id: step2
